@@ -1,0 +1,72 @@
+{
+  "extensions" : {
+    "onlyInclude" : [ ],
+    "alwaysExclude" : [ ]
+  },
+  "ignoreStandardScopingConventions" : false,
+  "removeStandardConcerns" : false,
+  "logoLink" : "",
+  "ignoredFilesConventions" : [ ],
+  "testFilesConventions" : [ ],
+  "generatedFilesConventions" : [ ],
+  "buildAndDeploymentFilesConventions" : [ ],
+  "otherFilesConventions" : [ ],
+  "concerns" : [ ],
+  "ignoreContributors" : [ ],
+  "componentsFolderDepth" : 1,
+  "minComponentsCount" : 0,
+  "ignoreStandardControls" : false,
+  "goalsAndControls" : [ ],
+  "fileHistoryAnalysis" : {
+    "importPath" : "../git-history.txt",
+    "ignoreContributors" : [ ".*\\[bot\\].*" ],
+    "anonymizeContributors" : false,
+    "transformContributorEmails" : [ ]
+  },
+  "analysis" : {
+    "skipDuplication" : false,
+    "skipDependencies" : false,
+    "cacheSourceFiles" : true,
+    "saveCodeFragments" : true,
+    "maxFileSizeBytes" : 1000000,
+    "maxLines" : 10000,
+    "maxLineLength" : 1000,
+    "maxTemporalDependenciesDepthDays" : 180,
+    "locDuplicationThreshold" : 10000000,
+    "minDuplicationBlockLoc" : 6,
+    "maxTopListSize" : 50,
+    "analyzerOverrides" : [ ],
+    "fileSizeThresholds" : {
+      "low" : 100,
+      "medium" : 200,
+      "high" : 500,
+      "veryHigh" : 1000
+    },
+    "fileAgeThresholds" : {
+      "low" : 30,
+      "medium" : 90,
+      "high" : 180,
+      "veryHigh" : 365
+    },
+    "fileUpdateFrequencyThresholds" : {
+      "low" : 5,
+      "medium" : 20,
+      "high" : 50,
+      "veryHigh" : 100
+    },
+    "unitSizeThresholds" : {
+      "low" : 10,
+      "medium" : 20,
+      "high" : 50,
+      "veryHigh" : 100
+    },
+    "conditionalComplexityThresholds" : {
+      "low" : 5,
+      "medium" : 10,
+      "high" : 25,
+      "veryHigh" : 50
+    },
+    "customHtmlReportHeaderFragment" : "",
+    "analyzeConcernOverlaps" : false
+  }
+}

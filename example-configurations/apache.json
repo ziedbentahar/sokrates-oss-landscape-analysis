@@ -1,0 +1,18 @@
+{
+  "githubCloneUrl": "https://github.com",
+  "githubApiUrl": "https://api.github.com",
+  "githubToken": "<ENTER_YOUR_GITHUB_TOKEN>",
+  "reposUpdatedAfter": "2021-01-01",
+  "pullsCreatedAfter": "2020-01-01",
+  "sokratesJarFilePath": "<ENTER_SOKRATES_FOLDER>/sokrates-0.9.jar",
+  "javaOptions": "-Xmx28g",
+  "githubOrgs": [
+    "apache"
+  ],
+  "ignore": [
+    {
+      "org": "",
+      "repo": ".*[-]builds"
+    }
+  ]
+}
