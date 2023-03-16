@@ -1,14 +1,12 @@
 {
   "githubCloneUrl": "https://github.com",
   "githubApiUrl": "https://api.github.com",
-  "githubToken": "<ENTER_YOUR_GITHUB_TOKEN>",
+  "githubToken": "${GITHUB_API_TOKEN}",
   "reposUpdatedAfter": "2021-01-01",
   "pullsCreatedAfter": "2020-01-01",
-  "sokratesJarFilePath": "<ENTER_SOKRATES_FOLDER>/sokrates-LATEST.jar",
+  "sokratesJarFilePath": "/sokrates/sokrates-LATEST.jar",
   "javaOptions": "-Xmx28g",
-  "githubOrgs": [
-    "<ENTER_YOUR_GITHUB_ORG_NAME>"
-  ],
+  "githubOrgs": ["${GITHUB_ORG_NAME}"],
   "ignore": [
     {
       "org": "",
