@@ -11,8 +11,10 @@ import {
   Cluster,
   ContainerImage,
   FargateTaskDefinition,
+  Secret as ecs_Secret,
 } from "aws-cdk-lib/aws-ecs";
 import { Bucket, IBucket } from "aws-cdk-lib/aws-s3";
+import { ISecret, Secret } from "aws-cdk-lib/aws-secretsmanager";
 import { Construct } from "constructs";
 
 const resolve = require("path").resolve;
@@ -42,9 +44,14 @@ export class Sokrates extends Stack {
       service: GatewayVpcEndpointAwsService.S3,
     });
 
+    const githubTokenSecret = new Secret(this, "github-token-secret", {
+      secretName: `${applicationName}-credentials`,
+    });
+
     new SokratesTask(this, "sokrates-task", {
       vpc,
       bucket,
+      githubTokenSecret,
     });
   }
 }
@@ -52,6 +59,7 @@ export class Sokrates extends Stack {
 interface SokratesTaskProps {
   readonly vpc: IVpc;
   readonly bucket: IBucket;
+  readonly githubTokenSecret: ISecret;
 }
 
 export class SokratesTask extends Construct {
@@ -74,9 +82,15 @@ export class SokratesTask extends Construct {
       environment: {
         BUCKET_NAME: props.bucket.bucketName,
       },
+      secrets: {
+        GITHUB_API_TOKEN: ecs_Secret.fromSecretsManager(
+          props.githubTokenSecret
+        ),
+      },
       image: ContainerImage.fromAsset("../", {
         ignoreMode: IgnoreMode.DOCKER,
       }),
+
       logging: new AwsLogDriver({
         streamPrefix: "sokrates",
       }),
