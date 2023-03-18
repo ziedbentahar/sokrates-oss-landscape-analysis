@@ -30,7 +30,7 @@ export class SokratesAnalysisStepFunctions extends Construct {
   ) {
     super(scope, id);
 
-    const runTask = new EcsRunTask(this, `RunTask`, {
+    const runTask = new EcsRunTask(this, `run-sokrates-code-analyses`, {
       cluster: props.cluster,
       taskDefinition: props.task,
       launchTarget: new EcsFargateLaunchTarget({
