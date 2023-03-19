@@ -82,7 +82,7 @@ This deploymend packages the `analysis-scripts` along with sokrates in a Docker 
 
 Here is the architecture diagram of Sokrates on AWS
 
-![image](https://user-images.githubusercontent.com/6813975/226207419-510db4bf-9dfa-4281-b3c6-0b00769f8f2e.png)
+![image](https://user-images.githubusercontent.com/6813975/226207802-1d8160d7-005f-43e5-83b3-3a92582e1197.png)
 
 
 
