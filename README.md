@@ -68,17 +68,17 @@ The analysis works in several steps:
     - Running the **analysis-scripts/generated/pull-requests-scripts**/ bash scripts that:
       - downloads and stores in JSON files the pull request metadata for all repositories
       - generates static HTML pull request reports for each organization
-      
-      
-### Deploying Sokrates to CDK
+
+
+### Deploying Sokrates to AWS
 
 In this repo you can also find a CDK IaC that deploys sokrates on AWS. 
 
-***Before deplying ***
+**_Before deploying_**
 
 This deploymend packages the `analysis-scripts` along with sokrates in a Docker image that will be run as a container on ECS.
 
-***What will you deploy on AWS ?***
+**_What will you deploy on AWS ?_**
 
 Here is the architecture diagram of Sokrates on AWS
 
