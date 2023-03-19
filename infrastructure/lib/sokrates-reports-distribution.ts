@@ -8,16 +8,16 @@ import { CanonicalUserPrincipal, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { IBucket } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
 
-export interface SokratesReportsDistributionBucketProps {
+export interface SokratesReportsDistributionProps {
   readonly applicationName: string;
   readonly bucket: IBucket;
 }
 
-export class SokratesReportsDistributionBucket extends Construct {
+export class SokratesReportsDistribution extends Construct {
   constructor(
     scope: Construct,
     id: string,
-    props: SokratesReportsDistributionBucketProps
+    props: SokratesReportsDistributionProps
   ) {
     super(scope, id);
 

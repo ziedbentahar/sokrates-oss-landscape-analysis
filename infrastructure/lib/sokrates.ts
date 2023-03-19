@@ -5,7 +5,7 @@ import { SokratesAnalysisECSTask } from "./sokrates-analysis-ecs-task";
 import { SokratesAnalysisBucket } from "./sokrates-analysis-result-bucket";
 import { SokratesAnalysisSchedule } from "./sokrates-analysis-schedule";
 import { SokratesAnalysisStepFunctions } from "./sokrates-analysis-stepfunctions";
-import { SokratesReportsDistributionBucket } from "./sokrates-reports-distribution";
+import { SokratesReportsDistribution } from "./sokrates-reports-distribution";
 import { SokratesVPC } from "./sokrates-vpc";
 
 export class Sokrates extends Stack {
@@ -56,7 +56,7 @@ export class Sokrates extends Stack {
       applicationName,
     });
 
-    new SokratesReportsDistributionBucket(this, "sokrates-distribution", {
+    new SokratesReportsDistribution(this, "sokrates-distribution", {
       applicationName,
       bucket: analysisReportsBucket.bucket,
     });
