@@ -74,7 +74,7 @@ The analysis works in several steps:
 
 In this repo you can also find a CDK IaC that deploys sokrates on AWS. 
 
-**Before deplying ***
+***Before deplying ***
 
 This deploymend packages the `analysis-scripts` along with sokrates in a Docker image that will be run as a container on ECS.
 
