@@ -1,10 +1,4 @@
 import { Stack, StackProps } from "aws-cdk-lib";
-import {
-  GatewayVpcEndpointAwsService,
-  IpAddresses,
-  SubnetType,
-  Vpc,
-} from "aws-cdk-lib/aws-ec2";
 import { Secret } from "aws-cdk-lib/aws-secretsmanager";
 import { Construct } from "constructs";
 import { SokratesAnalysisECSTask } from "./sokrates-analysis-ecs-task";
@@ -12,6 +6,7 @@ import { SokratesAnalysisBucket } from "./sokrates-analysis-result-bucket";
 import { SokratesAnalysisSchedule } from "./sokrates-analysis-schedule";
 import { SokratesAnalysisStepFunctions } from "./sokrates-analysis-stepfunctions";
 import { SokratesReportsDistributionBucket } from "./sokrates-reports-distribution";
+import { SokratesVPC } from "./sokrates-vpc";
 
 export class Sokrates extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -19,20 +14,8 @@ export class Sokrates extends Stack {
 
     const applicationName = "sokrates";
 
-    const vpc = new Vpc(this, "sokrates-vpc", {
-      ipAddresses: IpAddresses.cidr("10.0.0.0/24"),
-      subnetConfiguration: [
-        { name: "public-subnet", subnetType: SubnetType.PUBLIC },
-        {
-          name: "privat-subnet",
-          subnetType: SubnetType.PRIVATE_WITH_EGRESS,
-        },
-      ],
-    });
-
-    vpc.addGatewayEndpoint("s3GatewayEndpoint", {
-      service: GatewayVpcEndpointAwsService.S3,
-      subnets: [{ subnetType: SubnetType.PRIVATE_WITH_EGRESS }],
+    const { vpc } = new SokratesVPC(this, "sokrates-vpc", {
+      applicationName,
     });
 
     const githubTokenSecret = new Secret(this, "github-token-secret", {
