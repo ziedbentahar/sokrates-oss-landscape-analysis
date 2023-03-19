@@ -20,9 +20,11 @@ import { Construct } from "constructs";
 export interface SokratesAnalysisStepFunctionsProps {
   readonly cluster: ICluster;
   readonly task: TaskDefinition;
+  readonly applicationName: string;
 }
 
 export class SokratesAnalysisStepFunctions extends Construct {
+  readonly stateMachine: StateMachine;
   constructor(
     scope: Construct,
     id: string,
@@ -59,8 +61,9 @@ export class SokratesAnalysisStepFunctions extends Construct {
       runTask.addCatch(failState).next(successState)
     );
 
-    const stateMachine = new StateMachine(this, `StateMachine`, {
+    this.stateMachine = new StateMachine(this, `StateMachine`, {
       definition,
+      stateMachineName: `${props.applicationName}-state-machine`,
     });
   }
 }

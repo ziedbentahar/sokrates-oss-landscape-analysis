@@ -15,6 +15,7 @@ export interface SokratesAnalysisECSTaskProps {
   readonly vpc: IVpc;
   readonly bucket: IBucket;
   readonly githubTokenSecret: ISecret;
+  readonly applicationName: string;
 }
 
 export class SokratesAnalysisECSTask extends Construct {

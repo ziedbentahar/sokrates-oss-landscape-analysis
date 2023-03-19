@@ -1,0 +1,10 @@
+[
+  {
+    "cron": "0/50 * * * ? *",
+    "githubOrganisation": "projen"
+  },
+  {
+    "cron": "0/50 * * * ? *",
+    "githubOrganisation": "cdklabs"
+  }
+]

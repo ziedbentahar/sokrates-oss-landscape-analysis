@@ -9,6 +9,7 @@ import { Secret } from "aws-cdk-lib/aws-secretsmanager";
 import { Construct } from "constructs";
 import { SokratesAnalysisECSTask } from "./sokrates-analysis-ecs-task";
 import { SokratesAnalysisBucket } from "./sokrates-analysis-result-bucket";
+import { SokratesAnalysisSchedule } from "./sokrates-analysis-schedule";
 import { SokratesAnalysisStepFunctions } from "./sokrates-analysis-stepfunctions";
 import { SokratesReportsDistributionBucket } from "./sokrates-reports-distribution";
 
@@ -53,12 +54,23 @@ export class Sokrates extends Stack {
         vpc,
         bucket: analysisReportsBucket.bucket,
         githubTokenSecret,
+        applicationName,
       }
     );
 
-    new SokratesAnalysisStepFunctions(this, "sokrates-step-function", {
-      cluster: ecsCluster,
-      task: fargateTaskDefinition,
+    const { stateMachine } = new SokratesAnalysisStepFunctions(
+      this,
+      "sokrates-step-function",
+      {
+        cluster: ecsCluster,
+        task: fargateTaskDefinition,
+        applicationName,
+      }
+    );
+
+    new SokratesAnalysisSchedule(this, "sokrates-analysis-schedule", {
+      targetStateMachine: stateMachine,
+      applicationName,
     });
 
     new SokratesReportsDistributionBucket(this, "sokrates-distribution", {
