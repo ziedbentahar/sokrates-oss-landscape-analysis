@@ -69,3 +69,21 @@ The analysis works in several steps:
       - downloads and stores in JSON files the pull request metadata for all repositories
       - generates static HTML pull request reports for each organization
 
+
+### Deploying Sokrates to AWS
+
+In this repo you can also find a CDK IaC that deploys sokrates on AWS. 
+
+**_Before deploying_**
+
+This deploymend packages the `analysis-scripts` along with sokrates in a Docker image that will be run as a container on ECS.
+
+**_What will you deploy on AWS ?_**
+
+Here is the architecture diagram of Sokrates on AWS
+
+![image](https://user-images.githubusercontent.com/6813975/226207802-1d8160d7-005f-43e5-83b3-3a92582e1197.png)
+
+
+
+
