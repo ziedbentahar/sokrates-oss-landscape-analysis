@@ -1,4 +1,5 @@
 import { Stack, StackProps } from "aws-cdk-lib";
+import { Vpc } from "aws-cdk-lib/aws-ec2";
 import { Secret } from "aws-cdk-lib/aws-secretsmanager";
 import { Construct } from "constructs";
 import { SokratesAnalysisECSTask } from "./sokrates-analysis-ecs-task";
@@ -12,11 +13,17 @@ export class Sokrates extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const applicationName = "sokrates";
+    const applicationName = this.node.tryGetContext("applicationName");
+    const vpcId = this.node.tryGetContext("vpcId");
 
-    const { vpc } = new SokratesVPC(this, "sokrates-vpc", {
-      applicationName,
-    });
+    // if no vpcId is provided a vpc is created
+    const vpc = vpcId
+      ? Vpc.fromLookup(this, "vpc", {
+          vpcId: vpcId,
+        })
+      : new SokratesVPC(this, "sokrates-vpc", {
+          applicationName,
+        }).vpc;
 
     const githubTokenSecret = new Secret(this, "github-token-secret", {
       secretName: `${applicationName}-credentials`,
