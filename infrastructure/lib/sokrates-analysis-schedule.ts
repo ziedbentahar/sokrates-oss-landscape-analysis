@@ -69,7 +69,7 @@ export class SokratesAnalysisSchedule extends Construct {
           targets: [
             new LambdaFunction(triggerAnalysesJobForOrganisation, {
               event: RuleTargetInput.fromObject({
-                message: c.githubOrganisation,
+                githubOrganisation: c.githubOrganisation,
               }),
             }),
           ],
